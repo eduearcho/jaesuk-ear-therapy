@@ -18,3 +18,6 @@ desktop.ini
 
 # 패키지 폴더 (나중에 쓸 경우 대비)
 node_modules/
+
+# 아바타 원본 이미지 (용량이 커서 사이트에는 올리지 않음)
+avatars/
