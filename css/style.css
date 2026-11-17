@@ -417,6 +417,19 @@ html:has(.detail[open]) { overflow: hidden; }   /* 창이 열리면 뒤 페이�
 .detail-flow li::before { content: counter(flow) ". "; color: var(--sub); font-weight: 700; }
 .detail-book { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; margin-bottom: 18px; }
 .detail-book img { width: 100%; border-radius: 6px; box-shadow: var(--shadow-up); }
+.detail-series { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 8px; }
+.detail-series a {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  color: var(--text); text-decoration: none; text-align: center;
+}
+.detail-series img {
+  width: 100%; margin-bottom: 8px; border-radius: 6px; box-shadow: var(--shadow);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.detail-series a:hover img { transform: translateY(-4px); box-shadow: var(--shadow-up); }
+.detail-series strong { color: var(--main); }
+.detail-series span { font-size: 0.85rem; color: var(--text-sub); }
+.detail-note { font-size: 0.88rem; color: var(--text-sub); text-align: center; }
 .detail-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .detail-actions .btn { min-height: 48px; padding: 10px 20px; }
 
