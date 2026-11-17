@@ -209,6 +209,17 @@ h1, h2, h3 { margin: 0; line-height: 1.3; }
   width: 14px; height: 14px; border-radius: 50%;
   background: var(--white); border: 3px solid var(--sub);
 }
+/* 경력 중 누를 수 있는 줄 (학위 논문) */
+.timeline-btn {
+  padding: 0; border: 0; background: none; color: inherit; font: inherit; line-height: inherit;
+  text-align: left; cursor: pointer;
+}
+.timeline-btn .tag {
+  display: inline-block; margin-left: 4px; padding: 2px 10px; border-radius: 999px;
+  background: var(--bg-alt); color: var(--sub-dark); font-size: 0.82rem; font-weight: 700;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.timeline-btn:hover .tag { background: var(--sub); color: var(--white); }
 .books li { margin-bottom: 10px; }
 .books li:last-child { margin-bottom: 0; }
 .books button {
@@ -429,6 +440,20 @@ html:has(.detail[open]) { overflow: hidden; }   /* 창이 열리면 뒤 페이�
 .detail-series a:hover img { transform: translateY(-4px); box-shadow: var(--shadow-up); }
 .detail-series strong { color: var(--main); }
 .detail-series span { font-size: 0.85rem; color: var(--text-sub); }
+.detail-thesis {
+  margin-top: 16px; padding: 18px; border-radius: 16px;
+  background: var(--bg); border-left: 4px solid var(--sub);
+}
+.detail-thesis .degree { margin: 0 0 6px; color: var(--text-sub); font-size: 0.9rem; }
+.detail-thesis .degree b {
+  display: inline-block; margin-right: 6px; padding: 2px 10px; border-radius: 999px;
+  background: var(--main); color: var(--white); font-size: 0.82rem;
+}
+.detail-thesis h4 { margin: 0 0 4px; color: var(--main); font-size: 1.05rem; line-height: 1.5; }
+.detail-thesis .sub { margin: 0 0 10px; color: var(--text-sub); font-size: 0.9rem; }
+.detail-thesis > p:not(.degree):not(.sub) { margin: 10px 0; font-size: 0.95rem; }
+.detail-thesis .detail-list { margin-bottom: 12px; font-size: 0.95rem; }
+.detail-thesis .btn { min-height: 44px; padding: 8px 18px; font-size: 0.92rem; }
 .detail-highlight {
   padding: 12px 16px; border-radius: 12px; border-left: 4px solid var(--point);
   background: var(--bg); color: var(--main); font-weight: 700;
