@@ -63,7 +63,43 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(step);
   };
 
-  // 7. 스크롤하면 서서히 나타나기
+  // 7. 플로팅 안내원: 아바타를 누르면 말풍선 메뉴 열기·닫기
+  const guideBtn = document.querySelector('.guide-avatar');
+  const guidePopup = document.getElementById('guide-popup');
+  const setGuide = (open) => {
+    guidePopup.hidden = !open;
+    guideBtn.setAttribute('aria-expanded', String(open));
+    guideBtn.setAttribute('aria-label', open ? '안내 메뉴 닫기' : '안내 메뉴 열기');
+    if (open) guidePopup.querySelector('a').focus({ preventScroll: true });
+  };
+  guideBtn.addEventListener('click', () => setGuide(guidePopup.hidden));
+  guidePopup.querySelector('.guide-close').addEventListener('click', () => {
+    setGuide(false);
+    guideBtn.focus();
+  });
+  // 메뉴를 누르면 해당 섹션으로 부드럽게 이동 후 닫기
+  guidePopup.querySelectorAll('.guide-menu a').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      // 등장 애니메이션 전(살짝 아래로 내려간) 위치가 아닌 원래 위치로 계산
+      let top = 0;
+      for (let el = target; el; el = el.offsetParent) top += el.offsetTop;
+      window.scrollTo({ top: top - header.offsetHeight - 16, behavior: reduceMotion ? 'auto' : 'smooth' });
+      history.replaceState(null, '', link.getAttribute('href'));
+      setGuide(false);
+    });
+  });
+  // 바깥을 누르거나 Esc를 누르면 닫기
+  document.addEventListener('click', (e) => {
+    if (!guidePopup.hidden && !e.target.closest('.guide')) setGuide(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !guidePopup.hidden) { setGuide(false); guideBtn.focus(); }
+  });
+
+  // 8. 스크롤하면 서서히 나타나기
   const revealItems = document.querySelectorAll('.reveal');
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealItems.forEach((el) => el.classList.add('is-visible'));

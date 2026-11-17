@@ -80,13 +80,22 @@
     <!-- 2. 소개 -->
     <section class="section" id="about">
       <div class="container">
-        <p class="section-label reveal">ABOUT</p>
-        <h2 class="section-title reveal">귀가 들려주는 몸의 이야기</h2>
-        <p class="lead reveal">
-          귀에 나타난 작은 변화를 통해 한 사람의 생활 이야기를 이해하고,
-          스스로 건강을 돌볼 수 있도록 돕습니다.<br class="br-pc">
-          쉬운 말과 정확한 시범으로 이혈테라피를 가르칩니다.
-        </p>
+        <div class="about-intro">
+          <figure class="about-photo reveal">
+            <img src="images/activity-1.jpg" width="1333" height="2000" loading="lazy" decoding="async"
+                 alt="이혈 모형을 들고 서서 혈자리를 가리키는 조재숙 협회장 전신 프로필">
+            <figcaption>국제이혈건강관리협회 협회장 조재숙</figcaption>
+          </figure>
+          <div class="about-text">
+            <p class="section-label reveal">ABOUT</p>
+            <h2 class="section-title reveal">귀가 들려주는 몸의 이야기</h2>
+            <p class="lead reveal">
+              귀에 나타난 작은 변화를 통해 한 사람의 생활 이야기를 이해하고,
+              스스로 건강을 돌볼 수 있도록 돕습니다.<br class="br-pc">
+              쉬운 말과 정확한 시범으로 이혈테라피를 가르칩니다.
+            </p>
+          </div>
+        </div>
         <ul class="stats">
           <li class="stat reveal"><strong><span class="count" data-target="12">12</span>년</strong><span>현장 경험</span></li>
           <li class="stat reveal"><strong><span class="count" data-target="3">3</span>단계</strong><span>체계적 교육 과정</span></li>
@@ -112,7 +121,7 @@
               <li>(전) 경남도립거창대학 스포츠재활운동관리과 외래교수</li>
             </ul>
           </div>
-          <div class="career-box reveal">
+          <div class="career-box reveal" id="books">
             <h3>저서</h3>
             <ul class="books">
               <li>『귀에게 행복을 묻다』</li>
@@ -208,5 +217,24 @@
       <p class="copyright">© <span class="js-year">2026</span> 조재숙. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- 8. 플로팅 안내원 (오른쪽 아래 고정 아바타) -->
+  <div class="guide">
+    <div class="guide-popup" id="guide-popup" role="dialog" aria-labelledby="guide-title" hidden>
+      <button class="guide-close" type="button" aria-label="안내 메뉴 닫기">×</button>
+      <p class="guide-title" id="guide-title">안녕하세요 🌿<br>이혈테라피 조재숙입니다</p>
+      <p class="guide-desc">어디로 안내해 드릴까요?</p>
+      <ul class="guide-menu">
+        <li><a href="#about">🙋‍♀️ 자기소개</a></li>
+        <li><a href="#books">📚 나의 저서</a></li>
+        <li><a href="#contact">📞 연락하기</a></li>
+      </ul>
+    </div>
+    <button class="guide-avatar" type="button" aria-expanded="false" aria-controls="guide-popup" aria-label="안내 메뉴 열기">
+      <span class="guide-wave" aria-hidden="true"></span>
+      <span class="guide-wave" aria-hidden="true"></span>
+      <img src="images/avatar.jpg" width="240" height="240" alt="">
+    </button>
+  </div>
 </body>
 </html>
