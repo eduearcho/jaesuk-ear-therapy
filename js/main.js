@@ -63,6 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(step);
   };
 
+  // 공통: 섹션으로 부드럽게 이동 (등장 애니메이션 전 위치가 아닌 원래 위치로 계산)
+  const scrollToSection = (hash) => {
+    const target = document.querySelector(hash);
+    if (!target) return;
+    let top = 0;
+    for (let el = target; el; el = el.offsetParent) top += el.offsetTop;
+    window.scrollTo({ top: top - header.offsetHeight - 16, behavior: reduceMotion ? 'auto' : 'smooth' });
+    history.replaceState(null, '', hash);
+  };
+
   // 7. 플로팅 안내원: 아바타를 누르면 말풍선 메뉴 열기·닫기
   const guideBtn = document.querySelector('.guide-avatar');
   const guidePopup = document.getElementById('guide-popup');
@@ -80,14 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 메뉴를 누르면 해당 섹션으로 부드럽게 이동 후 닫기
   guidePopup.querySelectorAll('.guide-menu a').forEach((link) => {
     link.addEventListener('click', (e) => {
-      const target = document.querySelector(link.getAttribute('href'));
-      if (!target) return;
       e.preventDefault();
-      // 등장 애니메이션 전(살짝 아래로 내려간) 위치가 아닌 원래 위치로 계산
-      let top = 0;
-      for (let el = target; el; el = el.offsetParent) top += el.offsetTop;
-      window.scrollTo({ top: top - header.offsetHeight - 16, behavior: reduceMotion ? 'auto' : 'smooth' });
-      history.replaceState(null, '', link.getAttribute('href'));
+      scrollToSection(link.getAttribute('href'));
       setGuide(false);
     });
   });
@@ -99,7 +103,41 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && !guidePopup.hidden) { setGuide(false); guideBtn.focus(); }
   });
 
-  // 8. 스크롤하면 서서히 나타나기
+  // 8. 자세히 보기: data-detail 이 붙은 버튼을 누르면 같은 이름의 template 내용을 설명 창에 띄우기
+  const dialog = document.getElementById('detail-dialog');
+  const dialogBody = dialog.querySelector('.detail-body');
+  document.querySelectorAll('[data-detail]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tpl = document.getElementById(btn.dataset.detail);
+      if (!tpl) return;
+      dialogBody.replaceChildren(tpl.content.cloneNode(true));
+      const title = dialogBody.querySelector('h3');
+      if (title) {
+        title.id = 'detail-title';
+        dialog.setAttribute('aria-labelledby', 'detail-title');
+      }
+      setGuide(false);
+      dialog.showModal();
+      dialog.scrollTop = 0;
+    });
+  });
+  dialog.querySelector('.detail-close').addEventListener('click', () => dialog.close());
+  // 창 바깥(어두운 부분)을 누르면 닫기
+  dialog.addEventListener('click', (e) => {
+    const r = dialog.getBoundingClientRect();
+    const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    if (e.target === dialog && outside) dialog.close();
+  });
+  // 창 안의 "#섹션" 버튼은 창을 닫고 그 섹션으로 이동
+  dialogBody.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    e.preventDefault();
+    dialog.close();
+    scrollToSection(link.getAttribute('href'));
+  });
+
+  // 9. 스크롤하면 서서히 나타나기
   const revealItems = document.querySelectorAll('.reveal');
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealItems.forEach((el) => el.classList.add('is-visible'));
