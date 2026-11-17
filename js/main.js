@@ -103,6 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && !guidePopup.hidden) { setGuide(false); guideBtn.focus(); }
   });
 
+  // 활동 사진은 한 장씩 나타나게 (목록 전체가 길어도 문제없도록)
+  document.querySelectorAll('.gallery-grid li').forEach((li) => li.classList.add('reveal'));
+
   // 8. 자세히 보기: data-detail 이 붙은 버튼을 누르면 같은 이름의 template 내용을 설명 창에 띄우기
   const dialog = document.getElementById('detail-dialog');
   const dialogBody = dialog.querySelector('.detail-body');
@@ -117,8 +120,40 @@ document.addEventListener('DOMContentLoaded', () => {
         dialog.setAttribute('aria-labelledby', 'detail-title');
       }
       setGuide(false);
+      dialog.classList.remove('is-photo');
       dialog.showModal();
       dialog.scrollTop = 0;
+    });
+  });
+
+  // 활동 사진: 카테고리 버튼으로 골라 보기
+  const filterBtns = document.querySelectorAll('.gallery-filters button');
+  const galleryItems = document.querySelectorAll('.gallery-grid li');
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.filter;
+      filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      galleryItems.forEach((li) => { li.hidden = cat !== 'all' && li.dataset.cat !== cat; });
+    });
+  });
+
+  // 활동 사진: 누르면 설명 창에 크게 보여 주기
+  document.querySelectorAll('.gallery-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      const figure = document.createElement('figure');
+      figure.className = 'detail-photo';
+      const img = document.createElement('img');
+      img.src = item.dataset.full;
+      img.alt = item.querySelector('img').alt;
+      const caption = document.createElement('figcaption');
+      caption.id = 'detail-title';
+      caption.textContent = item.dataset.caption;
+      figure.append(img, caption);
+      dialogBody.replaceChildren(figure);
+      dialog.setAttribute('aria-labelledby', 'detail-title');
+      dialog.classList.add('is-photo');
+      setGuide(false);
+      dialog.showModal();
     });
   });
   dialog.querySelector('.detail-close').addEventListener('click', () => dialog.close());
@@ -155,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
   // 같은 줄의 카드는 살짝씩 시간차를 두고 등장
-  document.querySelectorAll('.stats, .cards, .gallery, .contact-buttons, .career-grid').forEach((group) => {
+  document.querySelectorAll('.stats, .cards, .contact-buttons, .career-grid').forEach((group) => {
     group.querySelectorAll('.reveal').forEach((el, idx) => { el.style.transitionDelay = `${idx * 0.1}s`; });
   });
   revealItems.forEach((el) => observer.observe(el));

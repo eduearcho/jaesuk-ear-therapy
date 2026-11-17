@@ -174,16 +174,85 @@
       <div class="container">
         <p class="section-label reveal">GALLERY</p>
         <h2 class="section-title reveal">활동 사진</h2>
-        <ul class="gallery">
-          <li class="reveal"><img src="images/activity-1.jpg" width="1333" height="2000" loading="lazy" decoding="async"
-               alt="이혈 모형을 들고 손가락으로 혈자리를 가리키는 조재숙 협회장"></li>
-          <li class="reveal"><img src="images/activity-2.jpg" width="1333" height="2000" loading="lazy" decoding="async"
-               alt="테이블에 앉아 지압봉으로 이혈 모형의 혈자리를 설명하는 모습"></li>
-          <li class="reveal"><img class="pos-right" src="images/activity-3.jpg" width="2000" height="1333" loading="lazy" decoding="async"
-               alt="노트북 앞에서 귀 모형을 들고 온라인 강의를 진행하는 모습"></li>
-          <li class="reveal"><img class="pos-right" src="images/activity-4.jpg" width="1500" height="1000" loading="lazy" decoding="async"
-               alt="눈을 감고 손가락으로 자신의 귀를 지압하는 조재숙 협회장"></li>
+        <p class="lead reveal">강의실에서, 봉사 현장에서 귀로 건강을 나눕니다.</p>
+
+        <!-- 카테고리 버튼: data-filter 값과 사진의 data-cat 값이 같으면 보여요 -->
+        <div class="gallery-filters reveal" role="group" aria-label="사진 분류">
+          <button type="button" data-filter="all" aria-pressed="true">전체</button>
+          <button type="button" data-filter="lecture" aria-pressed="false">강의·교육</button>
+          <button type="button" data-filter="volunteer" aria-pressed="false">봉사활동</button>
+          <button type="button" data-filter="schedule" aria-pressed="false">봉사 일정</button>
+          <button type="button" data-filter="profile" aria-pressed="false">프로필</button>
+        </div>
+
+        <!-- 사진 목록: 누르면 크게 보여요 (data-full = 큰 사진, data-caption = 설명) -->
+        <ul class="gallery-grid">
+          <!-- 강의·교육 -->
+          <li data-cat="lecture"><button type="button" class="gallery-item" data-full="images/gallery/lecture-kepco.jpg" data-caption="2026 한전원자력연료 진로설계교육 · 귀마사지와 기석 부착 실습 특강">
+            <img src="images/gallery/lecture-kepco-thumb.jpg" width="640" height="453" loading="lazy" decoding="async" alt="한전원자력연료 진로설계교육에서 귀 모형을 들고 강의하는 조재숙 협회장">
+            <span class="cap">한전원자력연료 진로설계교육 특강</span></button></li>
+          <li data-cat="lecture"><button type="button" class="gallery-item" data-full="images/gallery/lecture-certificate.jpg" data-caption="가톨릭대학교 이혈테라피 과정 수료 · 귀분석지도사 자격증 수여 (함께한 분들의 얼굴은 모자이크했어요)">
+            <img src="images/gallery/lecture-certificate-thumb.jpg" width="640" height="296" loading="lazy" decoding="async" alt="이혈테라피 과정 수료생들이 자격증을 들고 협회장과 함께 찍은 단체 사진">
+            <span class="cap">귀분석지도사 자격증 수여</span></button></li>
+          <li data-cat="lecture"><button type="button" class="gallery-item" data-full="images/gallery/lecture-energy.jpg" data-caption="에너지클럽 176회 조찬모임 특강 · '귀티나는 삶을 살고 싶다면 귀를 눌러라' (2024. 5. 11)">
+            <img src="images/gallery/lecture-energy-thumb.jpg" width="640" height="578" loading="lazy" decoding="async" alt="에너지클럽 조찬모임 특강 포스터 '귀티나는 삶을 살고 싶다면 귀를 눌러라'">
+            <span class="cap">에너지클럽 조찬모임 특강</span></button></li>
+
+          <!-- 봉사활동 -->
+          <li data-cat="volunteer"><button type="button" class="gallery-item" data-full="images/gallery/volunteer-banner.jpg" data-caption="부천시자원봉사센터 이혈테라피 동아리 〈이혈건강〉 · 귀잡고 건강잡고">
+            <img src="images/gallery/volunteer-banner-thumb.jpg" width="640" height="152" loading="lazy" decoding="async" alt="귀잡고 건강잡고 이혈테라피 동아리 이혈건강 현수막">
+            <span class="cap">이혈테라피 동아리 〈이혈건강〉</span></button></li>
+          <li data-cat="volunteer"><button type="button" class="gallery-item" data-full="images/gallery/volunteer-team.jpg" data-caption="부천시자원봉사센터 봉사 단체 소개 · 이혈건강 봉사단">
+            <img src="images/gallery/volunteer-team-thumb.jpg" width="640" height="640" loading="lazy" decoding="async" alt="부천시자원봉사센터가 소개한 이혈건강 봉사단 카드">
+            <span class="cap">이혈건강 봉사단 소개</span></button></li>
+          <li data-cat="volunteer"><button type="button" class="gallery-item" data-full="images/gallery/volunteer-booth.jpg" data-caption="춘의종합사회복지관 '내 몸을 건강하게 이혈테라피' 봉사 부스 (얼굴은 모자이크했어요)">
+            <img src="images/gallery/volunteer-booth-thumb.jpg" width="640" height="480" loading="lazy" decoding="async" alt="천막 아래에서 봉사단이 주민들에게 이혈테라피를 해 드리는 모습">
+            <span class="cap">춘의종합사회복지관 봉사</span></button></li>
+          <li data-cat="volunteer"><button type="button" class="gallery-item" data-full="images/gallery/volunteer-festival.jpg" data-caption="2026 마을잔치 이혈테라피 봉사 (함께한 분들의 얼굴은 모자이크했어요)">
+            <img src="images/gallery/volunteer-festival-thumb.jpg" width="640" height="360" loading="lazy" decoding="async" alt="마을잔치 현수막 앞에서 봉사단과 함께 선 조재숙 협회장">
+            <span class="cap">2026 마을잔치 봉사</span></button></li>
+          <li data-cat="volunteer"><button type="button" class="gallery-item" data-full="images/gallery/volunteer-illust-1.jpg" data-caption="2026 경기도자원봉사센터 지원사업 '귀잡고 건강잡고' 봉사단 (일러스트)">
+            <img src="images/gallery/volunteer-illust-1-thumb.jpg" width="640" height="427" loading="lazy" decoding="async" alt="귀잡고 건강잡고 현수막 앞 이혈건강 봉사단 일러스트">
+            <span class="cap">귀잡고 건강잡고 봉사단</span></button></li>
+          <li data-cat="volunteer"><button type="button" class="gallery-item" data-full="images/gallery/volunteer-illust-2.jpg" data-caption="이혈건강 봉사단 활동 모습 (일러스트)">
+            <img src="images/gallery/volunteer-illust-2-thumb.jpg" width="640" height="296" loading="lazy" decoding="async" alt="귀 모형 자료를 앞에 두고 선 봉사단 일러스트">
+            <span class="cap">봉사단 활동 모습</span></button></li>
+          <li data-cat="volunteer"><button type="button" class="gallery-item" data-full="images/gallery/volunteer-illust-3.jpg" data-caption="이혈건강 봉사단 모임 (연필 스케치 일러스트)">
+            <img src="images/gallery/volunteer-illust-3-thumb.jpg" width="640" height="854" loading="lazy" decoding="async" alt="도서관에서 모인 봉사단을 그린 연필 스케치">
+            <span class="cap">봉사단 모임 스케치</span></button></li>
+
+          <!-- 봉사 일정 포스터 -->
+          <li data-cat="schedule"><button type="button" class="gallery-item" data-full="images/gallery/schedule-0316.jpg" data-caption="월요일은 이혈테라피 봉사가는 날 · 3월 16일 춘의종합사회복지관">
+            <img src="images/gallery/schedule-0316-thumb.jpg" width="640" height="959" loading="lazy" decoding="async" alt="3월 16일 춘의종합사회복지관 봉사 일정 포스터">
+            <span class="cap">3월 16일 · 춘의종합사회복지관</span></button></li>
+          <li data-cat="schedule"><button type="button" class="gallery-item" data-full="images/gallery/schedule-0323.jpg" data-caption="월요일은 이혈테라피 봉사가는 날 · 3월 23일 양지실버케어센터">
+            <img src="images/gallery/schedule-0323-thumb.jpg" width="640" height="959" loading="lazy" decoding="async" alt="3월 23일 양지실버케어센터 봉사 일정 포스터">
+            <span class="cap">3월 23일 · 양지실버케어센터</span></button></li>
+          <li data-cat="schedule"><button type="button" class="gallery-item" data-full="images/gallery/schedule-04.jpg" data-caption="4월 봉사 일정 · 원미복지관, 신월 해누리복지관, 춘의복지관, 양지실버센터">
+            <img src="images/gallery/schedule-04-thumb.jpg" width="640" height="959" loading="lazy" decoding="async" alt="4월 이혈테라피 봉사 일정 포스터">
+            <span class="cap">4월 봉사 일정</span></button></li>
+          <li data-cat="schedule"><button type="button" class="gallery-item" data-full="images/gallery/schedule-05.jpg" data-caption="5월 봉사 일정 · 원미복지관, 신월청소년센타, 신월 해누리복지관, 춘의복지관">
+            <img src="images/gallery/schedule-05-thumb.jpg" width="640" height="960" loading="lazy" decoding="async" alt="5월 이혈테라피 봉사 일정 포스터">
+            <span class="cap">5월 봉사 일정</span></button></li>
+          <li data-cat="schedule"><button type="button" class="gallery-item" data-full="images/gallery/schedule-06.jpg" data-caption="6월 봉사 일정 · 원미복지관, 해누리복지관, 춘의복지관, 양지실버센터">
+            <img src="images/gallery/schedule-06-thumb.jpg" width="640" height="960" loading="lazy" decoding="async" alt="6월 이혈테라피 봉사 일정 포스터">
+            <span class="cap">6월 봉사 일정</span></button></li>
+
+          <!-- 프로필 -->
+          <li data-cat="profile"><button type="button" class="gallery-item" data-full="images/activity-1.jpg" data-caption="이혈 모형으로 혈자리를 설명하는 조재숙 협회장">
+            <img src="images/activity-1.jpg" width="1333" height="2000" loading="lazy" decoding="async" alt="이혈 모형을 들고 손가락으로 혈자리를 가리키는 조재숙 협회장">
+            <span class="cap">프로필</span></button></li>
+          <li data-cat="profile"><button type="button" class="gallery-item" data-full="images/activity-2.jpg" data-caption="지압봉으로 이혈 모형의 혈자리를 짚는 모습">
+            <img src="images/activity-2.jpg" width="1333" height="2000" loading="lazy" decoding="async" alt="테이블에 앉아 지압봉으로 이혈 모형의 혈자리를 설명하는 모습">
+            <span class="cap">프로필</span></button></li>
+          <li data-cat="profile"><button type="button" class="gallery-item" data-full="images/activity-3.jpg" data-caption="귀 모형을 들고 진행하는 온라인 강의">
+            <img src="images/activity-3.jpg" width="2000" height="1333" loading="lazy" decoding="async" alt="노트북 앞에서 귀 모형을 들고 온라인 강의를 진행하는 모습">
+            <span class="cap">온라인 강의</span></button></li>
+          <li data-cat="profile"><button type="button" class="gallery-item" data-full="images/activity-4.jpg" data-caption="스스로 귀를 지압하며 건강을 돌보는 모습">
+            <img src="images/activity-4.jpg" width="1500" height="1000" loading="lazy" decoding="async" alt="눈을 감고 손가락으로 자신의 귀를 지압하는 조재숙 협회장">
+            <span class="cap">셀프 귀 지압</span></button></li>
         </ul>
+        <p class="gallery-note">🔒 함께한 분들의 개인정보 보호를 위해 얼굴과 연락처는 모자이크했어요.</p>
       </div>
     </section>
 
