@@ -1,0 +1,20 @@
+# 비밀 정보 (절대 올리지 않기)
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Netlify 로컬 설정
+.netlify/
+
+# 운영체제·편집기 임시 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+
+# 패키지 폴더 (나중에 쓸 경우 대비)
+node_modules/
