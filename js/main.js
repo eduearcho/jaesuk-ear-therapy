@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const cat = btn.dataset.filter;
       filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
       galleryItems.forEach((li) => { li.hidden = cat !== 'all' && li.dataset.cat !== cat; });
+      document.querySelector('.gallery-grid').classList.toggle('is-filtered', cat !== 'all');
     });
   });
 
