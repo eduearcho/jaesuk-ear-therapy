@@ -429,6 +429,10 @@ html:has(.detail[open]) { overflow: hidden; }   /* 창이 열리면 뒤 페이�
 .detail-series a:hover img { transform: translateY(-4px); box-shadow: var(--shadow-up); }
 .detail-series strong { color: var(--main); }
 .detail-series span { font-size: 0.85rem; color: var(--text-sub); }
+.detail-highlight {
+  padding: 12px 16px; border-radius: 12px; border-left: 4px solid var(--point);
+  background: var(--bg); color: var(--main); font-weight: 700;
+}
 .detail-note { font-size: 0.88rem; color: var(--text-sub); text-align: center; }
 .detail-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .detail-actions .btn { min-height: 48px; padding: 10px 20px; }
